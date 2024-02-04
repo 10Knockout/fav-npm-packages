@@ -1,83 +1,102 @@
-import { React, useContext } from "react";
-import { FavContext } from "../Store/FavState";
-import { Link, useNavigate } from "react-router-dom";
-import { MdDelete } from "react-icons/md";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import Button from "../Components/Button";
+import { useNavigate } from "react-router-dom";
+import { IoEyeOutline } from "react-icons/io5";
+import { MdOutlineModeEdit } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
-function IndexPage() {
-  const { data, setData } = useContext(FavContext);
+const IndexPage = () => {
+  const navigate = useNavigate();
 
-  const handleDelete = (index) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this item?"
-    );
-    if (confirmDelete) {
-      const newData = [...data];
-      newData.splice(index, 1);
-      setData(newData);
-      localStorage.setItem("data", JSON.stringify(newData));
+  const [packagesList, setPackagesList] = useState(
+    JSON.parse(localStorage.getItem("packagesList") || "[]")
+  );
+
+  useEffect(() => {
+    localStorage.setItem("packagesList", JSON.stringify(packagesList));
+  }, [packagesList]);
+
+  const handleClick = () => {
+    navigate("/add");
+  };
+
+  const handleViewClick = (value) => {
+    navigate("/view", { state: value });
+  };
+
+  const handleEditClick = (value) => {
+    navigate("/edit", { state: value });
+  };
+
+  const handleDeleteClick = (value) => {
+    if (window.confirm(`You are about to delete ${value.name}?`)) {
+      const updatedPackagesList = packagesList.filter(
+        (pkg) => pkg.name !== value.name
+      );
+      setPackagesList(updatedPackagesList);
     }
   };
-  const navigate = useNavigate();
   return (
-    <>
-      <div className="h-[20vh] flex items-center justify-center">
-        <h1 className="text-4xl font-bold">
-          Welcome to the Favourite NPM Packages.
-        </h1>
+    <div className=" h-[100vh] md:p-[100px] p-[20px]">
+      <div className="flex items-center justify-between">
+        <div className="flex-grow text-center">
+          <div className="heading text-[2em] font-bold">
+            Welcome to Favorite NPM Packages.
+          </div>
+        </div>
+        {packagesList.length > 0 ? (
+          <div>
+            <Button onClick={handleClick} label="Add Packages" />
+          </div>
+        ) : null}
       </div>
 
-      <div className=" flex justify-center">
-        <button
-          onClick={() => {
-            navigate("/Fav");
-            // alert({data})
-          }}
-          class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-black rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-black focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
-        >
-          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-white rounded-md group-hover:bg-opacity-0">
-            Add Fav
-          </span>
-        </button>
-      </div>
-
-      <div class="overflow-auto px-[6%] rounded-md">
-        <table class="w-full divide-y-2  divide-gray-200 bg-white text-sm">
-          <thead class="ltr:text-left rtl:text-right">
-            <tr>
-              <th class="whitespace-nowrap px-4 bg-gray-400 py-2 font-medium text-gray-900">
-                Package Name
-              </th>
-              <th class="whitespace-nowrap bg-gray-400 px-4 py-2 font-medium text-gray-900">
-                Description
-              </th>
-            </tr>
-          </thead>
-
-          <tbody className="divide-y divide-gray-200 max-h-[40vh]">
-            {data?.map((item, index) => (
-              <tr key={index} className="p-2 bg-gray-300 rounded-md">
-                <td className="whitespace-nowrap py-4 px-4 text-xl font-medium text-gray-900">
-                  {item.packagename}
-                </td>
-                <td className="flex space-x-4 py-4 whitespace-nowrap items-center justify-between px-4 py-2 text-gray-700">
-                  {item.description}
-                  <span className="text-xl flex space-x-7">
-                    <Link to={item.link} target="blank">
-                      <FaExternalLinkAlt />
-                    </Link>
-                    <span onClick={() => handleDelete(index)}>
-                      <MdDelete />
-                    </span>
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+      {packagesList.length > 0 ? (
+        <>
+          <div className="md:mt-[150px] p-9 mt-[50px] h-[40vh] border border-slate-400">
+            <div className="flex text-[20px]  font-semibold">
+              <div className="w-3/5 text-start">Package Name</div>
+              <div>Actions</div>
+            </div>
+            <div className=" text-[15px]  font-medium">
+              {packagesList.map((value, index) => {
+                return (
+                  <>
+                    <div className="flex">
+                      <div className="w-3/5 text-start">{value.name}</div>
+                      <div className="flex">
+                        {" "}
+                        <span onClick={() => handleViewClick(value)}>
+                          <IoEyeOutline />
+                        </span>
+                        <span onClick={() => handleEditClick(value)}>
+                          <MdOutlineModeEdit />
+                        </span>
+                        <span onClick={() => handleDeleteClick(value)}>
+                          <RiDeleteBin6Line />
+                        </span>
+                      </div>
+                    </div>
+                  </>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="md:mt-[150px] mt-[50px] h-[40vh] flex flex-col justify-center border border-slate-400">
+            <div className="text-center mb-[30px]">
+              you don't have any fav yet. Please add.
+            </div>
+            <div className="text-center">
+              <Button onClick={handleClick} label="Add Fav" />
+            </div>
+          </div>
+        </>
+      )}
+    </div>
   );
-}
+};
 
 export default IndexPage;

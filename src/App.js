@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Master from './Layout/Master';
-import Home from './Pages/Home';
-import Fav from './Pages/Fav';
 import IndexPage from './Pages/IndexPage';
+import Add from './Pages/Add';
+import Edit from './Pages/Edit';
+import View from './Pages/View';
 
 function App() {
   return (
@@ -11,9 +12,10 @@ function App() {
     <Router>
       <Routes>
         <Route path='' element={<Master/>}>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/fav' element={<Fav/>}/>
-        <Route path='/IndexPage' element={<IndexPage/>}/>
+        <Route path='/' element={<IndexPage/>}/>
+        <Route path='/add' element={<Add/>}/>
+        <Route path='/IndexPage' element={<Edit/>}/>
+        <Route path='/IndexPage' element={<View/>}/>
         </Route>
       </Routes>
     </Router>
