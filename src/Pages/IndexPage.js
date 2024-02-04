@@ -46,7 +46,7 @@ const IndexPage = () => {
         </div>
         {packagesList.length > 0 ? (
           <div>
-            <Button onClick={handleClick} label="Add Packages" />
+            <Button onClick={handleClick} label="Add Fav" />
           </div>
         ) : null}
       </div>

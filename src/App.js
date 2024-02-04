@@ -14,8 +14,8 @@ function App() {
         <Route path='' element={<Master/>}>
         <Route path='/' element={<IndexPage/>}/>
         <Route path='/add' element={<Add/>}/>
-        <Route path='/IndexPage' element={<Edit/>}/>
-        <Route path='/IndexPage' element={<View/>}/>
+        <Route path='/edit' element={<Edit/>}/>
+        <Route path='/view' element={<View/>}/>
         </Route>
       </Routes>
     </Router>
