@@ -3,6 +3,14 @@ import { useNavigate } from "react-router";
 import TextInput from "../Components/TextInput";
 import TextArea from "../Components/TextArea";
 import Button from "../Components/Button";
+import "./Add.css";
+
+const ErrorBox = ({ message, onClose }) => (
+  <div className="error-box">
+    <p>{message}</p>
+    <button onClick={onClose} className="return-button">Return</button>
+  </div>
+);
 
 const Add = () => {
   const navigate = useNavigate();
@@ -14,6 +22,7 @@ const Add = () => {
   const [textInput, setTextInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState([]);
+  const [error, setError] = useState(null);
 
   const getData = async (value) => {
     console.log("getdata function is running " + value);
@@ -51,6 +60,11 @@ const Add = () => {
   const radioChange = (e) => {
     setSelectedPackage(e.target.value);
   };
+
+  const closeErrorBox = () => {
+    setError(null);
+  };
+
   const errorClick = () => {
     if (selectedPackage && textInput) {
       const uniquePackages = [
@@ -62,7 +76,7 @@ const Add = () => {
       );
       setPackagesList(uniquePackages);
     } else {
-      alert("please select a package and enter the reason for selecting it ");
+      setError("Please select a package and enter the reason for selecting it");
     }
   };
 
@@ -72,7 +86,9 @@ const Add = () => {
   };
   return (
     <div className="h-[100vh] md:p-[100px] p-[20px]">
-      <div className="heading text-[2em] font-bold">Search for NPM Packages</div>
+      <div className="heading text-[2em] font-bold">
+        Search for NPM Packages
+      </div>
       <div>
         <TextInput onChange={(e) => handleChange(e)} placeholder={"angular"} />
       </div>
@@ -118,6 +134,8 @@ const Add = () => {
         <div className="text-right mb-16 pb-16">
           <Button onClick={errorClick} label="Submit" />
         </div>
+
+        {error && <ErrorBox message={error} onClose={closeErrorBox} />}
       </div>
     </div>
   );
