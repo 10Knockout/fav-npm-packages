@@ -72,7 +72,7 @@ const Add = () => {
   };
   return (
     <div className="h-[100vh] md:p-[100px] p-[20px]">
-      <div className="heading text-[2em] font-bold">Search NPM Packages.</div>
+      <div className="heading text-[2em] font-bold">Search for NPM Packages</div>
       <div>
         <TextInput onChange={(e) => handleChange(e)} placeholder={"angular"} />
       </div>
@@ -115,7 +115,7 @@ const Add = () => {
             setTextInput(e.target.value);
           }}
         />
-        <div className="text-right">
+        <div className="text-right mb-16 pb-16">
           <Button onClick={errorClick} label="Submit" />
         </div>
       </div>
