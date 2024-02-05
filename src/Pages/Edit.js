@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Button from "../Components/Button";
 
 const Edit = () => {
   const navigate = useNavigate();
@@ -49,18 +50,28 @@ const Edit = () => {
           className="px-4 py-2 rounded-lg w-full mt-3 mb-4 h-[9em] bg-white dark:bg-white text-black dark:text-black"
         />
         <div className="flex space-x-3">
-          <button
-            className="font-medium px-3 py-1.5 transition-all ease-in duration-75 bg-black dark:bg-black rounded-md group-hover:bg-opacity-0 text-sm text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+          <Button
             onClick={handleSubmit}
-          >
-            Submit
-          </button>
-          <button
-            className="font-medium px-3 py-1.5 transition-all ease-in duration-75 bg-black dark:bg-black rounded-md group-hover:bg-opacity-0 text-sm text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+            label="Submit"
+            style={{
+              backgroundColor: "black",
+              color: "white",
+              fontSize: "1rem",
+              padding: "0.5rem 1rem",
+              transition: "all 0.3s ease-in",
+            }}
+          />
+          <Button
             onClick={handleClick}
-          >
-            Return
-          </button>
+            label="Return"
+            style={{
+              backgroundColor: "black",
+              color: "white",
+              fontSize: "1rem",
+              padding: "0.5rem 1rem",
+              transition: "all 0.3s ease-in",
+            }}
+          />
         </div>
       </div>
     </div>

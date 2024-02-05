@@ -29,13 +29,9 @@ const IndexPage = () => {
   };
 
   const handleDeleteClick = (value) => {
-    if (window.confirm(`You are about to delete ${value.name}?`)) {
-      const updatedPackagesList = packagesList.filter(
-        (pkg) => pkg.name !== value.name
-      );
-      setPackagesList(updatedPackagesList);
-    }
+    navigate("/delete", { state: value });
   };
+
   return (
     <div className=" h-[100vh] md:p-[100px] p-[20px]">
       <div className="flex items-center justify-between">

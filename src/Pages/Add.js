@@ -8,7 +8,9 @@ import "./Add.css";
 const ErrorBox = ({ message, onClose }) => (
   <div className="error-box">
     <p>{message}</p>
-    <button onClick={onClose} className="return-button">Return</button>
+    <button onClick={onClose} className="return-button">
+      Return
+    </button>
   </div>
 );
 
