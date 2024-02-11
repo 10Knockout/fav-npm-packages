@@ -1,146 +1,141 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import TextInput from "../Components/TextInput";
-import TextArea from "../Components/TextArea";
+import React, { useState, useEffect } from "react";
 import Button from "../Components/Button";
-import "./Add.css";
+import { useNavigate } from "react-router-dom";
+import { IoEyeOutline } from "react-icons/io5";
+import { MdOutlineModeEdit } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
-const ErrorBox = ({ message, onClose }) => (
-  <div className="error-box">
-    <p>{message}</p>
-    <button onClick={onClose} className="return-button">
-      Return
-    </button>
-  </div>
-);
-
-const Add = () => {
+const IndexPage = () => {
   const navigate = useNavigate();
+
   const [packagesList, setPackagesList] = useState(
     JSON.parse(localStorage.getItem("packagesList") || "[]")
   );
-  const [List, setList] = useState([]);
-  const [search, setSearch] = useState("");
-  const [textInput, setTextInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState([]);
-  const [error, setError] = useState(null);
-
-  const getData = async (value) => {
-    console.log("getdata function is running " + value);
-    if (value) {
-      setIsLoading(true);
-      const response = await fetch(
-        `https://registry.npmjs.org/-/v1/search?text=${value}`
-      );
-      const packages = await response.json();
-      setList(packages.objects);
-      setIsLoading(false);
-    }
-  };
+  const [editingPackage, setEditingPackage] = useState(null);
+  const [editedDescription, setEditedDescription] = useState("");
 
   useEffect(() => {
     localStorage.setItem("packagesList", JSON.stringify(packagesList));
-    if (selectedPackage.length !== 0) {
-      navigate("/");
-    }
   }, [packagesList]);
 
-  const debounce = (func) => {
-    let timer;
-    return function (...args) {
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(() => {
-        timer = null;
-        console.log(this, args);
-        func.apply(this, args);
-      }, 500);
-    };
-  };
-  const newfunction = useCallback(debounce(getData), []);
-
-  const radioChange = (e) => {
-    setSelectedPackage(e.target.value);
+  const handleClick = () => {
+    navigate("/add");
   };
 
-  const closeErrorBox = () => {
-    setError(null);
+  const handleViewClick = (value) => {
+    navigate("/view", { state: value });
   };
 
-  const errorClick = () => {
-    if (selectedPackage && textInput) {
-      const uniquePackages = [
-        ...packagesList,
-        { name: selectedPackage, description: textInput },
-      ].filter(
-        (obj, index, self) =>
-          index === self.findIndex((o) => o.name === obj.name)
-      );
-      setPackagesList(uniquePackages);
-    } else {
-      setError("Please select a package and enter the reason for selecting it");
-    }
+  const handleEditClick = (value) => {
+    setEditingPackage(value);
+    setEditedDescription(value.description);
   };
 
-  const handleChange = (e) => {
-    setSearch(e.target.value);
-    newfunction(e.target.value);
+  const handleDeleteClick = (value) => {
+    navigate("/delete", { state: value });
   };
+
+  const handleSaveEdit = () => {
+    const updatedPackagesList = packagesList.map((pkg) =>
+      pkg.name === editingPackage.name ? { ...pkg, description: editedDescription } : pkg
+    );
+    setPackagesList(updatedPackagesList);
+    setEditingPackage(null);
+  };
+
   return (
-    <div className="h-[100vh] md:p-[100px] p-[20px]">
-      <div className="heading text-[2em] font-bold">
-        Search for NPM Packages
-      </div>
-      <div>
-        <TextInput onChange={(e) => handleChange(e)} placeholder={"angular"} />
+    <div className=" h-[100vh] md:p-[100px] p-[20px]">
+      <div className="flex items-center justify-between">
+        <div className="flex-grow text-center">
+          <div className="heading text-[2em] font-bold">
+            Welcome to Favorite NPM Packages.
+          </div>
+        </div>
+        {packagesList.length > 0 ? (
+          <div>
+            <Button onClick={handleClick} label="Add Fav" />
+          </div>
+        ) : null}
       </div>
 
-      {isLoading ? (
-        <div className="h-[400px]">loading...</div>
-      ) : (
+      {packagesList.length > 0 ? (
         <>
-          <div className="mt-4 overflow-scroll h-[400px]">
-            {List.map((value, index) => {
-              return (
-                <div key={`${value.package.name}${index}`}>
-                  <div className="text-[20px]">
-                    <span>
-                      <input
-                        className="mr-3"
-                        type="radio"
-                        name="package"
-                        value={value.package.name}
-                        onChange={radioChange}
-                        checked={selectedPackage === value.package.name}
-                      />
+          <div className="md:mt-[150px] p-9 mt-[50px] h-[40vh] border border-slate-400">
+            <div className="flex text-[20px]  font-semibold">
+              <div className="w-3/5 text-start">Package Name</div>
+              <div>Actions</div>
+            </div>
+            <div className=" text-[15px]  font-medium">
+              {packagesList.map((value, index) => (
+                <div className="flex" key={index}>
+                  <div className="w-3/5 text-start">{value.name}</div>
+                  <div className="flex space-x-2">
+                    <span onClick={() => handleViewClick(value)}>
+                      <IoEyeOutline />
                     </span>
-                    {value.package.name}
+                    <span onClick={() => handleEditClick(value)}>
+                      <MdOutlineModeEdit />
+                    </span>
+                    <span onClick={() => handleDeleteClick(value)}>
+                      <RiDeleteBin6Line />
+                    </span>
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
+          {editingPackage && (
+            <div className="w-[500px] h-[500px] bg-gradient-to-br from-green-400 to-blue-600 rounded-lg p-5 relative inline-flex flex-col items-center justify-center mt-5">
+              <div className="text-2xl mb-2 text-center">
+                <span className="font-bold text-3xl text-white">Name of the Package :</span> {editingPackage.name}
+              </div>
+              <div className="text-2xl mt-4 mb-6 text-center">
+                <span className="font-bold text-3xl text-white">Description of the package :</span> {editingPackage.description}
+              </div>
+              <div className="text-3xl font-bold text-white mb-4 text-center">Update the Description :</div>
+              <textarea
+                value={editedDescription}
+                onChange={(e) => setEditedDescription(e.target.value)}
+                type="text"
+                className="px-4 py-2 rounded-lg w-full mt-3 mb-4 h-[9em] bg-white dark:bg-white text-black dark:text-black"
+              />
+              <div className="flex space-x-3">
+                <Button
+                  onClick={handleSaveEdit}
+                  label="Save"
+                  style={{
+                    backgroundColor: "black",
+                    color: "white",
+                    fontSize: "1rem",
+                    padding: "0.5rem 1rem",
+                    transition: "all 0.3s ease-in",
+                  }}
+                />
+                <Button
+                  onClick={() => setEditingPackage(null)}
+                  label="Cancel"
+                  style={{
+                    backgroundColor: "black",
+                    color: "white",
+                    fontSize: "1rem",
+                    padding: "0.5rem 1rem",
+                    transition: "all 0.3s ease-in",
+                  }}
+                />
+              </div>
+            </div>
+          )}
         </>
+      ) : (
+        <div className="md:mt-[150px] mt-[50px] h-[40vh] flex flex-col justify-center border border-slate-400">
+          <div className="text-center mb-[30px]">You don't have any favorites yet. Please add.</div>
+          <div className="text-center">
+            <Button onClick={handleClick} label="Add Fav" />
+          </div>
+        </div>
       )}
-
-      <div className="mt-5">
-        <div className="heading text-[1.5em] font-bold">
-          Why is this you fav?
-        </div>
-        <TextArea
-          value={textInput}
-          onChange={(e) => {
-            setTextInput(e.target.value);
-          }}
-        />
-        <div className="text-right mb-16 pb-16">
-          <Button onClick={errorClick} label="Submit" />
-        </div>
-
-        {error && <ErrorBox message={error} onClose={closeErrorBox} />}
-      </div>
     </div>
   );
 };
 
-export default Add;
+export default IndexPage;
