@@ -75,3 +75,51 @@ Before we get started, keep in mind:
 [info] 
 [info] +  Success! Logged into GitHub as 10Knockout 
 [info] 
+[debug] [2024-02-11T19:05:06.782Z] >>> [apiv2][query] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:07.147Z] <<< [apiv2][status] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:07.147Z] <<< [apiv2][body] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:09.375Z] >>> [apiv2][query] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:09.742Z] <<< [apiv2][status] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:09.742Z] <<< [apiv2][body] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:35.357Z] >>> [apiv2][query] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:35.715Z] <<< [apiv2][status] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:35.715Z] <<< [apiv2][body] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:41.724Z] >>> [apiv2][query] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:41.899Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:42.030Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:42.067Z] <<< [apiv2][status] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:42.067Z] <<< [apiv2][body] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:42.169Z] >>> [apiv2][query] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:42.253Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:42.254Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:42.314Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:42.375Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:42.375Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:42.521Z] <<< [apiv2][status] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:42.521Z] <<< [apiv2][body] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:42.655Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:42.655Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:43.310Z] >>> [apiv2][query] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:43.659Z] <<< [apiv2][status] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:43.659Z] <<< [apiv2][body] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:50.159Z] >>> [apiv2][query] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:50.349Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:50.492Z] >>> [apiv2][query] GET https://api.github.com/repos//actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:50.506Z] <<< [apiv2][status] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:50.507Z] <<< [apiv2][body] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:50.641Z] >>> [apiv2][query] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:50.690Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:50.690Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:50.827Z] <<< [apiv2][status] GET https://api.github.com/repos//actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:50.828Z] <<< [apiv2][body] GET https://api.github.com/repos//actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:50.988Z] <<< [apiv2][status] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:50.988Z] <<< [apiv2][body] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:51.681Z] >>> [apiv2][query] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:52.027Z] <<< [apiv2][status] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:52.028Z] <<< [apiv2][body] GET https://api.github.com/repos/10Knockout/fav-npm-packages/actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:05:54.930Z] >>> [apiv2][query] GET https://api.github.com/repos/10Knockout/fav-npm-packages.git/actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:05:55.274Z] <<< [apiv2][status] GET https://api.github.com/repos/10Knockout/fav-npm-packages.git/actions/secrets/public-key 401
+[debug] [2024-02-11T19:05:55.275Z] <<< [apiv2][body] GET https://api.github.com/repos/10Knockout/fav-npm-packages.git/actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
+[debug] [2024-02-11T19:06:04.020Z] >>> [apiv2][query] GET https://api.github.com/repos/10Knockout/fav-npm-packages.git/actions/secrets/public-key type=owner
+[debug] [2024-02-11T19:06:04.384Z] <<< [apiv2][status] GET https://api.github.com/repos/10Knockout/fav-npm-packages.git/actions/secrets/public-key 401
+[debug] [2024-02-11T19:06:04.384Z] <<< [apiv2][body] GET https://api.github.com/repos/10Knockout/fav-npm-packages.git/actions/secrets/public-key {"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}
